@@ -1,4 +1,5 @@
 import models.*;
+import services.*;
 
 /**
  * Hotel Booking System - Entry point for the application.
@@ -11,7 +12,7 @@ public class Main {
 
     /**
      * Main method - Entry point of the application.
-     * Creates room objects and displays their details with availability.
+     * Creates room objects and displays their details with centralized inventory.
      *
      * @param args Command line arguments (not used)
      */
@@ -23,20 +24,21 @@ public class Main {
         Room doubleRoom = new DoubleRoom();
         Room suiteRoom = new SuiteRoom();
 
-        // Store availability using simple variables
-        boolean singleAvailable = true;
-        boolean doubleAvailable = true;
-        boolean suiteAvailable = false;
+        // Initialize centralized inventory
+        RoomInventory inventory = new RoomInventory();
 
         // Display room details and availability
         System.out.println("\nRoom Details:");
         singleRoom.displayRoom();
-        System.out.println("Available: " + singleAvailable);
+        System.out.println("Available: " + inventory.getAvailability("Single"));
 
         doubleRoom.displayRoom();
-        System.out.println("Available: " + doubleAvailable);
+        System.out.println("Available: " + inventory.getAvailability("Double"));
 
         suiteRoom.displayRoom();
-        System.out.println("Available: " + suiteAvailable);
+        System.out.println("Available: " + inventory.getAvailability("Suite"));
+
+        // Display full inventory
+        inventory.displayInventory();
     }
 }
