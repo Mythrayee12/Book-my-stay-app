@@ -12,7 +12,7 @@ public class Main {
 
     /**
      * Main method - Entry point of the application.
-     * Demonstrates booking request intake and queuing.
+     * Demonstrates the complete booking workflow from search to allocation.
      *
      * @param args Command line arguments (not used)
      */
@@ -23,6 +23,7 @@ public class Main {
         RoomInventory inventory = new RoomInventory();
         SearchService searchService = new SearchService(inventory);
         BookingRequestQueue requestQueue = new BookingRequestQueue();
+        BookingService bookingService = new BookingService(inventory, requestQueue);
 
         // Perform room search
         searchService.searchAvailableRooms();
@@ -31,11 +32,16 @@ public class Main {
         requestQueue.addRequest(new Reservation("Alice", "Single"));
         requestQueue.addRequest(new Reservation("Bob", "Double"));
         requestQueue.addRequest(new Reservation("Charlie", "Suite"));
+        requestQueue.addRequest(new Reservation("Diana", "Single"));
 
-        // Display queue
+        // Display queue before processing
         requestQueue.displayQueue();
 
-        // Display inventory
+        // Process bookings and allocate rooms
+        bookingService.processBookings();
+
+        // Display final state
+        bookingService.displayAllocations();
         inventory.displayInventory();
     }
 }
