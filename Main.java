@@ -1,29 +1,19 @@
-import models.*;
-import services.*;
+/**
+ * Hotel Booking System - Entry point for the application.
+ * This class demonstrates the basic execution flow of a Java program.
+ *
+ * @author Your Name
+ * @version 1.0
+ */
 public class Main {
 
+    /**
+     * Main method - Entry point of the application.
+     * Prints a welcome message with application name and version.
+     *
+     * @param args Command line arguments (not used)
+     */
     public static void main(String[] args) {
-
-        BookingService hotel = new BookingService();
-
-        hotel.addRoom(101, "Single");
-        hotel.addRoom(102, "Double");
-        hotel.addRoom(103, "Suite");
-
-        Customer c1 = new Customer(1, "Amit", 1);
-        Customer c2 = new Customer(2, "Neha", 2);
-        Customer c3 = new Customer(3, "Rahul", 1);
-
-        hotel.showRooms();
-
-        hotel.bookRoom(c1, 101);
-        hotel.bookRoom(c2, 101);
-        hotel.bookRoom(c3, 101);
-
-        hotel.cancelBooking(1);
-
-        hotel.processQueues();
-
-        hotel.undoLastBooking();
+        System.out.println("Welcome to Hotel Booking System v1.0");
     }
 }
