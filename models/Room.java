@@ -1,42 +1,48 @@
 package models;
 
-public class Room {
+/**
+ * Abstract class representing a hotel room.
+ * Defines common attributes and behavior for all room types.
+ */
+public abstract class Room {
 
-    private int roomNumber;
-    private String type;
-    private boolean available;
+    protected int numberOfBeds;
+    protected double size; // in square meters
+    protected double price; // per night
+    protected String type;
 
-    public Room(int roomNumber, String type) {
-        this.roomNumber = roomNumber;
+    /**
+     * Constructor for Room.
+     * @param numberOfBeds Number of beds in the room
+     * @param size Room size in square meters
+     * @param price Price per night
+     * @param type Room type
+     */
+    public Room(int numberOfBeds, double size, double price, String type) {
+        this.numberOfBeds = numberOfBeds;
+        this.size = size;
+        this.price = price;
         this.type = type;
-        this.available = true;
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void bookRoom() {
-        available = false;
-    }
-
-    public void freeRoom() {
-        available = true;
-    }
-
+    /**
+     * Get room type.
+     * @return Room type
+     */
     public String getType() {
         return type;
     }
 
-    public void releaseRoom() {
-        available = true;
+    /**
+     * Get price per night.
+     * @return Price
+     */
+    public double getPrice() {
+        return price;
     }
 
-    public void displayRoom() {
-        System.out.println("Room " + roomNumber + " (" + type + ") - " + (available ? "Available" : "Booked"));
-    }
+    /**
+     * Display room details.
+     */
+    public abstract void displayRoom();
 }
